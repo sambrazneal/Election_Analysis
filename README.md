@@ -46,4 +46,4 @@ The analysis of the election show that:
 
 In this module, we performed an analysis of election_results.csv and found the winner of the election, total votes for each canidate, percentage votes for each canidate, the counties in the district, how many people in each county voted, and the county with the highest turnout. 
 
-This script can easily be changed for another election by simply updated the file_to_load variable to be the new set of election results. There could also be code added that could calculate the number of mailed, electronic, and paper ballots - if that information is collected on the election result csv. 
+This script can easily be changed for another election by simply copying the code and updating the file_to_load variable to be the new set of election results. There could also be code added that could calculate the number of mailed, electronic, and paper ballots - if that information is collected on the election result csv. 
