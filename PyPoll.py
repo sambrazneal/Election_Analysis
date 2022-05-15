@@ -54,30 +54,53 @@ with open(file_to_load) as election_data:
           # Add a vote to that canidate's count 
           canidate_votes[canidate_name] += 1 
 
-# Determine the percentage of votes for each canidate by looping through the counts
-# Iterate through the canidate list 
-for canidate_name in canidate_votes:
-     # Retrieve vote count of a canidate 
-     votes = canidate_votes[canidate_name]
-     #Calculate the percentage of votes 
-     vote_percentage = float(votes) / float(total_votes) * 100 
-     # Print out each canidate's name, vote count, and percentage of votes to the terminal 
-     print(f"{canidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+# Save the results to our text file
+with open(file_to_save, "w") as txt_file:
 
-# Determine winning vote and canidate 
-# Determine if the votes are greater than the winning count 
-     if (votes > winning_count) and (vote_percentage > winning_percentage):
-          # if true then set winning_count = votes and winning percent = vote_percentage 
-          winning_count = votes
-          winning_percentage = vote_percentage
-          # Set the winning_canidate equal to canidate's name
-          winning_canidate = canidate_name
+     # Print the final vote count to the terminal 
+     election_results = (
+          f"\nElection Results\n"
+          f"--------------------------\n"
+          f"Total Votes:{total_votes:,}\n"
+          f"--------------------------\n")
+     print(election_results, end="")
 
-winning_canidate_summary = (
-     f"--------------------------\n"
-     f"Winner: {winning_canidate}\n"
-     f"Winning Vote Count: {winning_count:,}\n"
-     f"Winning Percentage: {winning_percentage:.1f}%\n"
-     f"--------------------------\n")
+     # Save the final vote count to the text file 
+     txt_file.write(election_results)
 
-print(winning_canidate_summary)
+     # Determine the percentage of votes for each canidate by looping through the counts
+     # Iterate through the canidate list 
+     for canidate_name in canidate_votes:
+          # Retrieve vote count of a canidate 
+          votes = canidate_votes[canidate_name]
+          #Calculate the percentage of votes 
+          vote_percentage = float(votes) / float(total_votes) * 100 
+          # Print out each canidate's name, vote count, and percentage of votes to the terminal 
+          # print(f"{canidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+          # Canidate Results to txt_file
+          canidate_results = (f"{canidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+          # Print each canidate, their vote count, and percentage
+          print(canidate_results)
+
+          # Save the canidate results to text file 
+          txt_file.write(canidate_results)
+
+     # Determine winning vote and canidate 
+     # Determine if the votes are greater than the winning count 
+          if (votes > winning_count) and (vote_percentage > winning_percentage):
+               # if true then set winning_count = votes and winning percent = vote_percentage 
+               winning_count = votes
+               winning_percentage = vote_percentage
+               # Set the winning_canidate equal to canidate's name
+               winning_canidate = canidate_name
+
+     winning_canidate_summary = (
+          f"--------------------------\n"
+          f"Winner: {winning_canidate}\n"
+          f"Winning Vote Count: {winning_count:,}\n"
+          f"Winning Percentage: {winning_percentage:.1f}%\n"
+          f"--------------------------\n")
+
+     # print(winning_canidate_summary)
